@@ -116,7 +116,7 @@ Widget myDrawer(context, ScrollController scrollController) => Drawer(
             AspectRatio(
               aspectRatio: 3 / 2,
               child: Lottie.asset('assets/images/support-guy.json',
-                  fit: BoxFit.contain),
+                  frameRate: FrameRate.max, fit: BoxFit.contain),
             )
           ],
         ),
@@ -179,6 +179,7 @@ final List<dynamic> mobilePageContent = [
   ),
   Lottie.asset(
     'assets/images/support-man.json',
+    frameRate: FrameRate.max,
     fit: BoxFit.contain,
   ),
   Container(
@@ -277,6 +278,7 @@ final List<dynamic> tabletPageContent = [
   ),
   Lottie.asset(
     'assets/images/support-man.json',
+    frameRate: FrameRate.max,
     fit: BoxFit.contain,
   ),
   Container(
@@ -377,6 +379,7 @@ final List<dynamic> desktopPageContent = [
   ),
   Lottie.asset(
     'assets/images/support-man.json',
+    frameRate: FrameRate.max,
     fit: BoxFit.contain,
   ),
   Container(
