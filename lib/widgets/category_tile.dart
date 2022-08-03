@@ -7,17 +7,19 @@ class CategoryTile extends StatelessWidget {
     this.onHover,
     required this.tileName,
     this.icon,
+    this.onPressed,
   }) : super(key: key);
 
   final Color categoryTileColor;
   final void Function(bool)? onHover;
   final String tileName;
   final Widget? icon;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       onHover: onHover,
       child: ListTile(
         tileColor: categoryTileColor,

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 // import 'package:my_app/auth.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:responsive_layout/attendance/attendance_app.dart';
-import 'package:responsive_layout/background.dart';
+
+import '../widgets/background.dart';
+import 'attendance_app.dart';
 
 class LoginPage extends StatefulWidget {
   // static const String id = 'login-page';

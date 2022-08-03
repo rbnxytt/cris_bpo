@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
-import 'package:responsive_layout/data/app_constants.dart';
-import 'package:responsive_layout/data/my_table_data.dart';
-import 'package:responsive_layout/widgets/category_tile.dart';
+import 'package:universal_html/html.dart' as html;
+import '../data/app_constants.dart';
+import '../data/my_table_data.dart';
+import '../widgets/category_tile.dart';
 
 class AttendanceApp extends StatefulWidget {
   static const String id = '/attendance_app';
@@ -15,8 +18,28 @@ class AttendanceApp extends StatefulWidget {
 }
 
 class _AttendanceAppState extends State<AttendanceApp> {
-  String currentDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
-  String today = DateFormat('EEEE').format(DateTime.now());
+  String? today;
+  String? timeString;
+
+  @override
+  void initState() {
+    today = DateFormat('EEEE').format(DateTime.now());
+    timeString = _formatDateTime(DateTime.now());
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => getTime());
+    super.initState();
+  }
+
+  void getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    setState(() {
+      timeString = formattedDateTime;
+    });
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    return DateFormat('MM/dd/yyyy hh:mm:ss').format(dateTime);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,21 +60,23 @@ class _AttendanceAppState extends State<AttendanceApp> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 50.0,
                       ),
                       child: SizedBox(
                         child: ListTile(
-                          leading: FaIcon(
+                          leading: const FaIcon(
                             FontAwesomeIcons.userClock,
                             color: Colors.white,
                           ),
                           title: Text(
-                            'Staff Attendance\nTracking System',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 13.0),
+                            MediaQuery.of(context).size.width > 1200
+                                ? 'Staff Attendance Tracking System'
+                                : "",
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 13.0),
                           ),
                         ),
                       ),
@@ -64,6 +89,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CategoryTile(
+                            onPressed: () {},
                             icon: const FaIcon(
                               FontAwesomeIcons.house,
                               color: Colors.white,
@@ -80,6 +106,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
                             ),
                           ),
                           CategoryTile(
+                            onPressed: () {},
                             icon: const FaIcon(
                               FontAwesomeIcons.clock,
                               color: Colors.white,
@@ -94,6 +121,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
                             }),
                           ),
                           CategoryTile(
+                            onPressed: () {},
                             icon: const FaIcon(
                               FontAwesomeIcons.usersGear,
                               color: Colors.white,
@@ -126,6 +154,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
                             ),
                             tileName: 'Logout',
                             categoryTileColor: categoryTileColor4,
+                            onPressed: () => Navigator.pop(context),
                             onHover: (value) => setState(
                               () {
                                 value
@@ -161,35 +190,41 @@ class _AttendanceAppState extends State<AttendanceApp> {
                               'assets/images/logo.jpeg',
                               height: 48.0,
                             ),
-                            Row(
-                              children: [
-                                Column(
+                            SizedBox(
+                              width: 200.0,
+                              height: 100.0,
+                              child: ListTile(
+                                title: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: const [
-                                    Padding(
-                                      padding: EdgeInsets.all(3.0),
-                                      child: Text(
-                                        'Robert Smith',
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(3.0),
-                                      child: Text(
-                                        'Agent',
-                                        style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color(0xff0630C6),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(3.0),
+                                        child: Text(
+                                          'Robert Smith',
+                                          style: TextStyle(
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.w500),
                                         ),
                                       ),
-                                    )
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(3.0),
+                                        child: Text(
+                                          'Agent',
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xff0630C6),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                Container(
+                                trailing: Container(
                                   height: 50.0,
                                   width: 50.0,
                                   decoration: BoxDecoration(
@@ -201,8 +236,8 @@ class _AttendanceAppState extends State<AttendanceApp> {
                                     ),
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                )
-                              ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -234,15 +269,11 @@ class _AttendanceAppState extends State<AttendanceApp> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              currentDate,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 14.0),
-                            ),
-                            Text(
                               'Today is $today',
                               style: const TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 16.0),
-                            )
+                            ),
+                            Text(timeString!)
                           ],
                         ),
                       ),
@@ -270,15 +301,20 @@ class _AttendanceAppState extends State<AttendanceApp> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10.0),
                           child: Table(
-                            children: const [
+                            children: [
                               TableRow(
                                 children: [
-                                  Center(child: Text('Date')),
-                                  Center(child: Text('Line Of Business')),
-                                  Center(child: Text('Start Time')),
-                                  Center(child: Text('Break')),
-                                  Center(child: Text('Finish Time')),
-                                  Center(child: Text('Status'))
+                                  for (String header in tableDataHeaders)
+                                    Center(
+                                      child: Text(
+                                        header,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          color:
+                                              Color.fromARGB(255, 17, 12, 80),
+                                        ),
+                                      ),
+                                    )
                                 ],
                               ),
                             ],
