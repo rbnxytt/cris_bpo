@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:my_app/auth.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_layout/attendance/attendance_app.dart';
 import 'package:responsive_layout/background.dart';
 
 class LoginPage extends StatefulWidget {
@@ -96,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 80.0),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, AttendanceApp.id);
+                        },
                         // onPressed: signIn,
                         child: Container(
                           decoration: BoxDecoration(

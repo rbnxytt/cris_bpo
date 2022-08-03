@@ -77,47 +77,51 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      ListTile(
-                        leading: FaIcon(
-                          FontAwesomeIcons.check,
-                          color: Colors.red,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.check,
+                            color: Colors.red,
+                          ),
+                          title: Text('Customer Care & Support'),
                         ),
-                        title: Text('Customer Care & Support'),
-                      ),
-                      ListTile(
-                        leading: FaIcon(
-                          FontAwesomeIcons.check,
-                          color: Colors.red,
+                        ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.check,
+                            color: Colors.red,
+                          ),
+                          title: Text('Account Management'),
                         ),
-                        title: Text('Account Management'),
-                      ),
-                      ListTile(
-                        leading: FaIcon(
-                          FontAwesomeIcons.check,
-                          color: Colors.red,
+                        ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.check,
+                            color: Colors.red,
+                          ),
+                          title: Text('Billing and Dispute Management'),
                         ),
-                        title: Text('Billing and Dispute Management'),
-                      ),
-                      ListTile(
-                        leading: FaIcon(
-                          FontAwesomeIcons.check,
-                          color: Colors.red,
+                        ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.check,
+                            color: Colors.red,
+                          ),
+                          title: Text('Technical Support'),
                         ),
-                        title: Text('Technical Support'),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0),
-                        child: Divider(
-                          height: 0.5,
-                          color: Colors.black54,
-                        ),
-                      )
-                    ],
+                        Padding(
+                          padding: EdgeInsets.only(top: 20.0),
+                          child: Divider(
+                            height: 0.5,
+                            color: Colors.black54,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(

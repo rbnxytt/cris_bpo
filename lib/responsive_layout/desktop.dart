@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_layout/constants.dart';
-// import 'package:responsive_layout/login.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,7 +34,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
   void scrollToTop() {
     _scrollController!.animateTo(0,
-        duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
+        duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
   }
 
   void scrollToAbout() {
@@ -64,7 +63,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
             centerTitle: true,
             title: Padding(
               padding:
-                  const EdgeInsets.only(top: 20.0, left: 50.0, right: 50.0),
+                  const EdgeInsets.only(top: 20.0, left: 150.0, right: 150.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,

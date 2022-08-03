@@ -8,6 +8,7 @@ Color myDefaultBackground = Colors.white;
 TextStyle navStyle = const TextStyle(color: Colors.black87, fontSize: 14.0);
 
 var myAppBar = AppBar(
+  centerTitle: true,
   iconTheme: const IconThemeData(color: Colors.black),
   elevation: 1,
   backgroundColor: myDefaultBackground,
@@ -137,7 +138,6 @@ final List<dynamic> mobilePageContent = [
               child: SizedBox(
                 child: Text(
                   'Excellent service means excellent business.',
-                  maxLines: 5,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.w600),
                 ),
