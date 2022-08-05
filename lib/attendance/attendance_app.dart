@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
+import 'package:responsive_layout/layouts/splash_screen.dart';
 import 'package:universal_html/html.dart' as html;
 import '../data/app_constants.dart';
 import '../data/my_table_data.dart';
@@ -20,9 +22,11 @@ class AttendanceApp extends StatefulWidget {
 class _AttendanceAppState extends State<AttendanceApp> {
   String? today;
   String? timeString;
+  String? userEmail;
 
   @override
   void initState() {
+    userEmail = FirebaseAuth.instance.currentUser!.email;
     today = DateFormat('EEEE').format(DateTime.now());
     timeString = _formatDateTime(DateTime.now());
     Timer.periodic(const Duration(seconds: 1), (Timer t) => getTime());
@@ -39,6 +43,12 @@ class _AttendanceAppState extends State<AttendanceApp> {
 
   String _formatDateTime(DateTime dateTime) {
     return DateFormat('MM/dd/yyyy hh:mm:ss').format(dateTime);
+  }
+
+  Future signOut(context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushNamedAndRemoveUntil(
+        context, SplashScreen.id, (route) => false);
   }
 
   @override
@@ -154,7 +164,9 @@ class _AttendanceAppState extends State<AttendanceApp> {
                             ),
                             tileName: 'Logout',
                             categoryTileColor: categoryTileColor4,
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () {
+                              signOut(context);
+                            },
                             onHover: (value) => setState(
                               () {
                                 value
@@ -191,25 +203,25 @@ class _AttendanceAppState extends State<AttendanceApp> {
                               height: 48.0,
                             ),
                             SizedBox(
-                              width: 200.0,
+                              width: 300.0,
                               height: 100.0,
                               child: ListTile(
                                 title: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: const [
+                                  children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.all(3.0),
+                                        padding: const EdgeInsets.all(3.0),
                                         child: Text(
-                                          'Robert Smith',
-                                          style: TextStyle(
+                                          userEmail!,
+                                          style: const TextStyle(
                                               fontSize: 16.0,
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
+                                    const Expanded(
                                       child: Padding(
                                         padding: EdgeInsets.all(3.0),
                                         child: Text(

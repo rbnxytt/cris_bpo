@@ -1,14 +1,15 @@
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:my_app/auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_layout/auth.dart';
 
 import '../widgets/background.dart';
 import 'attendance_app.dart';
 
 class LoginPage extends StatefulWidget {
-  // static const String id = 'login-page';
+  static const String id = 'login-page';
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +18,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController? emailController, passwordController;
-  // final Auth auth = Auth();
+  final Auth auth = Auth();
 
   @override
   void initState() {
@@ -33,11 +34,26 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  // Future signIn() async {
-  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: emailController!.text.trim(),
-  //       password: passwordController!.text.trim());
-  // }
+  Future signIn(context) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController!.text.trim(),
+          password: passwordController!.text.trim());
+      Fluttertoast.showToast(
+          msg: "Login Success",
+          webPosition: "center",
+          fontSize: 18.0,
+          timeInSecForIosWeb: 1);
+
+      Navigator.pushNamed(context, AttendanceApp.id);
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(
+          msg: e.message!,
+          webPosition: "center",
+          fontSize: 18.0,
+          timeInSecForIosWeb: 3);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,10 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 80.0),
                       child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, AttendanceApp.id);
-                        },
-                        // onPressed: signIn,
+                        onPressed: () => signIn(context),
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),

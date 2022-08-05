@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:responsive_layout/attendance/login.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -100,7 +101,8 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       child: Text('Contact Us', style: navStyle)),
                   ElevatedButton(
                     onPressed: () {
-                      signInPage(context);
+                      // signInPage(context);
+                      Navigator.pushNamed(context, LoginPage.id);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
@@ -326,42 +328,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                 ],
                               ),
                             ),
-                            // InkWell(
-                            //   onTap: () {},
-                            //   child: Row(
-                            //     children: const [
-                            //       FaIcon(
-                            //         FontAwesomeIcons.linkedinIn,
-                            //         color: Colors.white,
-                            //       ),
-                            //       Padding(
-                            //         padding: EdgeInsets.only(left: 15.0),
-                            //         child: Text(
-                            //           'LinkedIn',
-                            //           style: TextStyle(color: Colors.white),
-                            //         ),
-                            //       )
-                            //     ],
-                            //   ),
-                            // ),
-                            // InkWell(
-                            //   onTap: () {},
-                            //   child: Row(
-                            //     children: const [
-                            //       FaIcon(
-                            //         FontAwesomeIcons.twitter,
-                            //         color: Colors.white,
-                            //       ),
-                            //       Padding(
-                            //         padding: EdgeInsets.only(left: 15.0),
-                            //         child: Text(
-                            //           'Twitter',
-                            //           style: TextStyle(color: Colors.white),
-                            //         ),
-                            //       )
-                            //     ],
-                            //   ),
-                            // ),
                           ],
                         ),
                         Row(

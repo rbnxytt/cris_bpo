@@ -100,8 +100,7 @@ Widget myDrawer(context, ScrollController scrollController) => Drawer(
                   const EdgeInsets.only(top: 25.0, left: 22.0, right: 22.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                  signInPage(context);
+                  Navigator.pushNamed(context, LoginPage.id);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red,
@@ -432,12 +431,3 @@ final List<dynamic> desktopPageContent = [
     ),
   )
 ];
-
-void signInPage(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) => const Material(
-      child: LoginPage(),
-    ),
-  );
-}
