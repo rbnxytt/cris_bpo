@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:universal_html/html.dart' as html;
@@ -100,7 +101,10 @@ Widget myDrawer(context, ScrollController scrollController) => Drawer(
                   const EdgeInsets.only(top: 25.0, left: 22.0, right: 22.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, LoginPage.id);
+                  Fluttertoast.showToast(
+                      msg: 'Please login on your desktop.',
+                      webPosition: "center");
+                  // Navigator.pushNamed(context, LoginPage.id);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red,

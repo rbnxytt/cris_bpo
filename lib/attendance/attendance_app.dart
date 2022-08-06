@@ -3,13 +3,11 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_layout/layouts/splash_screen.dart';
-import 'package:universal_html/html.dart' as html;
 import '../data/app_constants.dart';
-import '../data/my_table_data.dart';
 import '../widgets/category_tile.dart';
+import 'dashboard/dashboard_content.dart';
 
 class AttendanceApp extends StatefulWidget {
   static const String id = '/attendance_app';
@@ -187,212 +185,22 @@ class _AttendanceAppState extends State<AttendanceApp> {
           Expanded(
             flex: 5,
             child: SizedBox(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  AspectRatio(
-                    aspectRatio: 10,
-                    child: SizedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Image.asset(
-                              'assets/images/logo.jpeg',
-                              height: 48.0,
-                            ),
-                            SizedBox(
-                              width: 300.0,
-                              height: 100.0,
-                              child: ListTile(
-                                title: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(3.0),
-                                        child: Text(
-                                          userEmail!,
-                                          style: const TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    ),
-                                    const Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.all(3.0),
-                                        child: Text(
-                                          'Agent',
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xff0630C6),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                trailing: Container(
-                                  height: 50.0,
-                                  width: 50.0,
-                                  decoration: BoxDecoration(
-                                    image: const DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                        'assets/images/profile.jpg',
-                                      ),
-                                    ),
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Lottie.asset('assets/images/hotcoffee.json',
-                              height: 100.0, fit: BoxFit.contain),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 20.0),
-                            child: Text(
-                              'Good morning Robert !',
-                              style: TextStyle(
-                                  fontSize: 25.0, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Today is $today',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 16.0),
-                            ),
-                            Text(timeString!)
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    width: double.infinity,
-                    child: Padding(
-                      padding: EdgeInsets.all(30.0),
-                      child: Text(
-                        'Today\'s Schedule',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20.0),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      children: [
-                        const Divider(
-                          height: 1,
-                          color: Colors.black,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Table(
-                            children: [
-                              TableRow(
-                                children: [
-                                  for (String header in tableDataHeaders)
-                                    Center(
-                                      child: Text(
-                                        header,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          color:
-                                              Color.fromARGB(255, 17, 12, 80),
-                                        ),
-                                      ),
-                                    )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Divider(
-                          height: 1,
-                          color: Colors.black,
-                        ),
-                        const MyTableData(
-                          date: 'July 28, 2022',
-                          lineOfBusiness: 'SKRN',
-                          startTime: '2:00 AM',
-                          breakTime: '30 mins',
-                          finishTime: '10:00 AM',
-                          status: 'Working',
-                        ),
-                        const Divider(
-                          height: 1.0,
-                          color: Colors.black,
-                        ),
-                        const MyTableData(
-                          date: 'July 28, 2022',
-                          lineOfBusiness: 'SKRN',
-                          startTime: '2:00 AM',
-                          breakTime: '30 mins',
-                          finishTime: '10:00 AM',
-                          status: 'On Break',
-                        )
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: TextButton(
-                          onPressed: () {},
-                          onHover: (value) {
-                            value
-                                ? setState(
-                                    () {
-                                      submitLogColor = const Color.fromARGB(
-                                          255, 58, 53, 122);
-                                    },
-                                  )
-                                : setState(() {
-                                    submitLogColor = const Color(0xff1f1c43);
-                                  });
+              child: DashboardContent(
+                userEmail: userEmail,
+                today: today,
+                timeString: timeString,
+                onHover: (value) {
+                  value
+                      ? setState(
+                          () {
+                            submitLogColor =
+                                const Color.fromARGB(255, 58, 53, 122);
                           },
-                          child: Container(
-                            height: 50.0,
-                            width: 200,
-                            color: submitLogColor,
-                            child: const Center(
-                              child: Text(
-                                'Submit Log',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
+                        )
+                      : setState(() {
+                          submitLogColor = const Color(0xff1f1c43);
+                        });
+                },
               ),
             ),
           )
