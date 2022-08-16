@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_layout/attendance/attendance_app.dart';
 import 'package:responsive_layout/attendance/login.dart';
 import 'package:responsive_layout/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'attendance/app_controller.dart';
 import 'layouts/splash_screen.dart';
 
 void main() async {
@@ -19,14 +21,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: SplashScreen.id,
-      routes: {
-        SplashScreen.id: (context) => const SplashScreen(),
-        AttendanceApp.id: (context) => const AttendanceApp(),
-        LoginPage.id: (context) => const LoginPage()
-      },
+    return ChangeNotifierProvider(
+      create: (context) => AppController(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: SplashScreen.id,
+        routes: {
+          SplashScreen.id: (context) => const SplashScreen(),
+          AttendanceApp.id: (context) => const AttendanceApp(),
+          LoginPage.id: (context) => const LoginPage()
+        },
+      ),
     );
   }
 }

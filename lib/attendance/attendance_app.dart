@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:responsive_layout/data/my_table_data.dart';
 import 'package:responsive_layout/layouts/splash_screen.dart';
 import '../data/app_constants.dart';
 import '../widgets/category_tile.dart';
@@ -51,6 +52,25 @@ class _AttendanceAppState extends State<AttendanceApp> {
 
   @override
   Widget build(BuildContext context) {
+    List screenContent = [
+      DashboardContent(
+        userEmail: userEmail,
+        today: today,
+        timeString: timeString,
+        onHover: (value) {
+          value
+              ? setState(
+                  () {
+                    submitLogColor = const Color.fromARGB(255, 58, 53, 122);
+                  },
+                )
+              : setState(() {
+                  submitLogColor = const Color(0xff1f1c43);
+                });
+        },
+      ),
+      Text('Hello')
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Row(
@@ -184,25 +204,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
           ),
           Expanded(
             flex: 5,
-            child: SizedBox(
-              child: DashboardContent(
-                userEmail: userEmail,
-                today: today,
-                timeString: timeString,
-                onHover: (value) {
-                  value
-                      ? setState(
-                          () {
-                            submitLogColor =
-                                const Color.fromARGB(255, 58, 53, 122);
-                          },
-                        )
-                      : setState(() {
-                          submitLogColor = const Color(0xff1f1c43);
-                        });
-                },
-              ),
-            ),
+            child: SizedBox(child: screenContent[0]),
           )
         ],
       ),
