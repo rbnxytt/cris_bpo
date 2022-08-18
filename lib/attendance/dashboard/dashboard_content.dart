@@ -71,7 +71,7 @@ class DashboardContent extends StatelessWidget {
               ),
               const MyTableData(
                 date: 'July 28, 2022',
-                lineOfBusiness: 'SKRN',
+                lineOfBusiness: 'SKRN, NET TV',
                 startTime: '2:00 AM',
                 breakTime: '30 mins',
                 finishTime: '10:00 AM',
@@ -81,14 +81,6 @@ class DashboardContent extends StatelessWidget {
                 height: 1.0,
                 color: Colors.black,
               ),
-              const MyTableData(
-                date: 'July 28, 2022',
-                lineOfBusiness: 'SKRN',
-                startTime: '2:00 AM',
-                breakTime: '30 mins',
-                finishTime: '10:00 AM',
-                status: 'On Break',
-              )
             ],
           ),
         ),
