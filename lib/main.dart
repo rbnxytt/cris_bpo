@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "CRIS BPO",
       debugShowCheckedModeBanner: false,
       initialRoute: SplashScreen.id,
       routes: {

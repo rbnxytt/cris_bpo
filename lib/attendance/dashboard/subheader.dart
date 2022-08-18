@@ -13,6 +13,17 @@ class SubHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String greeting() {
+      var hour = DateTime.now().hour;
+      if (hour < 12) {
+        return 'Morning';
+      }
+      if (hour < 17) {
+        return 'Afternoon';
+      }
+      return 'Evening';
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -22,10 +33,10 @@ class SubHeader extends StatelessWidget {
           children: [
             Lottie.asset('assets/images/hotcoffee.json',
                 height: 100.0, fit: BoxFit.contain),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 20.0),
               child: Text(
-                'Good morning Robert !',
+                'Good ${greeting()}!',
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w600),
               ),
             ),
