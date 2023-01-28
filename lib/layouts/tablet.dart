@@ -167,7 +167,7 @@ class _TabletScaffoldState extends State<TabletScaffold> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
+                          backgroundColor: Colors.red,
                           minimumSize: const Size(200, 50),
                         ),
                         onPressed: () async {

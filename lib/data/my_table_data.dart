@@ -65,7 +65,7 @@ class MyTableData extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: const Color(0xff8CF99D),
+                    backgroundColor: const Color(0xff8CF99D),
                   ),
                   onPressed: () {},
                   child: const Text('Check-In'),
@@ -75,7 +75,7 @@ class MyTableData extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: const Color(0xff8BC7FF),
+                    backgroundColor: const Color(0xff8BC7FF),
                   ),
                   onPressed: () {},
                   child: const Text('Break'),
@@ -85,7 +85,7 @@ class MyTableData extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: const Color(0xffF88D8D),
+                    backgroundColor: const Color(0xffF88D8D),
                   ),
                   onPressed: () {},
                   child: const Text('Check-Out'),

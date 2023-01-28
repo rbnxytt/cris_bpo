@@ -99,22 +99,22 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                         scrollToEnd();
                       },
                       child: Text('Contact Us', style: navStyle)),
-                  ElevatedButton(
-                    onPressed: () {
-                      // signInPage(context);
-                      Navigator.pushNamed(context, LoginPage.id);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Text(
-                        'Agent Sign In',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     // signInPage(context);
+                  //     Navigator.pushNamed(context, LoginPage.id);
+                  //   },
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: Colors.red,
+                  //   ),
+                  //   child: const Padding(
+                  //     padding: EdgeInsets.all(5.0),
+                  //     child: Text(
+                  //       'Admin Sign In',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -260,7 +260,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
+                          backgroundColor: Colors.red,
                           minimumSize: const Size(200, 50),
                         ),
                         onPressed: () async {

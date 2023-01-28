@@ -34,10 +34,11 @@ class SubHeader extends StatelessWidget {
             Lottie.asset('assets/images/hotcoffee.json',
                 height: 100.0, fit: BoxFit.contain),
             Padding(
-              padding: EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: Text(
                 'Good ${greeting()}!',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w600),
+                style: const TextStyle(
+                    fontSize: 25.0, fontWeight: FontWeight.w600),
               ),
             ),
           ],

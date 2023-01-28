@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:responsive_layout/widgets/contact_us.dart';
 import 'package:universal_html/html.dart' as html;
 
 import '../constants.dart';
@@ -39,7 +40,9 @@ class _MobileScaffoldState extends State<MobileScaffold> {
           SliverGrid(
             delegate: SliverChildBuilderDelegate(
                 (context, index) => SizedBox(
-                    width: double.infinity, child: mobilePageContent[index]),
+                    width: double.infinity,
+                    child:
+                        mobilePageContent(context, _scrollController!)[index]),
                 childCount: 3),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 30.0, crossAxisCount: 1, childAspectRatio: 1),
@@ -150,10 +153,16 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
+                          backgroundColor: Colors.red,
                           minimumSize: const Size(200, 50),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ContactUsForm(),
+                              ));
+                        },
                         child: const Text(
                           'Contact Us',
                           style: TextStyle(color: Colors.white),
@@ -172,7 +181,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
             delegate: SliverChildListDelegate(
               [
                 AspectRatio(
-                  aspectRatio: 4 / 1,
+                  aspectRatio: 8 / 1,
                   child: Container(
                     color: Colors.red,
                     width: double.infinity,
@@ -182,30 +191,30 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                html.window.open(
-                                    'https://www.facebook.com/Cris-Business-Process-Outsourcing-Services-109935727945703',
-                                    '_blank');
-                              },
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: const [
-                                  FaIcon(
-                                    FontAwesomeIcons.facebookF,
-                                    color: Colors.white,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 15.0),
-                                    child: Text(
-                                      'Facebook',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                          children: const [
+                            // InkWell(
+                            //   onTap: () {
+                            //     html.window.open(
+                            //         'https://www.facebook.com/Cris-Business-Process-Outsourcing-Services-109935727945703',
+                            //         '_blank');
+                            //   },
+                            //   child: Row(
+                            //     crossAxisAlignment: CrossAxisAlignment.center,
+                            //     children: const [
+                            //       FaIcon(
+                            //         FontAwesomeIcons.facebookF,
+                            //         color: Colors.white,
+                            //       ),
+                            //       Padding(
+                            //         padding: EdgeInsets.only(left: 15.0),
+                            //         child: Text(
+                            //           'Facebook',
+                            //           style: TextStyle(color: Colors.white),
+                            //         ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
                             // InkWell(
                             //   onTap: () {},
                             //   child: const FaIcon(

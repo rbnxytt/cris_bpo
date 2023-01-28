@@ -69,7 +69,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
                 });
         },
       ),
-      Text('Hello')
+      const Text('Hello')
     ];
     return Scaffold(
       backgroundColor: Colors.white,
